@@ -6,7 +6,7 @@
 		<artifactId>module_base</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>module_common</artifactId>
+	<artifactId>module_web</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
@@ -16,14 +16,7 @@
 	<dependencies>
 		
 		<!-- lib -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-		</dependency>
+		
 		
 
 
