@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./bower_components/angular-ui-select/dist/select.min.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <!--[if lt IE 9]>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.js"></script>
+      <script>
+        document.createElement('ui-select');
+        document.createElement('ui-select-match');
+        document.createElement('ui-select-choices');
+      </script>
+    <![endif]-->
+  </head>
+  <body ng-app="myApp">
+    <div id="header"></div>
+    <div class="container" ng-controller="ItemController">
+
+      <div class="page-header">
+        <h1>A time items list</h1>
+        <a href="category.html">category</a> <a href="project.html">project</a> <a href="location.html">location</a> <a href="tag.html">tag</a>
+      </div>
+
+      <div class="alert alert-info" role="alert" ng-hide="items &amp;&amp; items.length > 0">
+        There are no items yet.
+      </div>
+      
+      <form class="form-horizontal" role="form" ng-submit="createItem(newItem)">
+        
+        <div class="form-group">
+          <div class="col-sm-3">
+            <ui-select ng-model="category.selected" theme="bootstrap">
+              <ui-select-match placeholder="Select a category...">{{$select.selected.categoryName}}</ui-select-match>
+              <ui-select-choices repeat="category in categorys">
+                <div ng-bind-html="category.categoryName"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-sm-3">
+            <ui-select ng-model="project.selected" theme="bootstrap">
+              <ui-select-match placeholder="Select a project...">{{$select.selected.projectName}}</ui-select-match>
+              <ui-select-choices repeat="project in projects">
+                <div ng-bind-html="project.projectName"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-sm-3">
+            <ui-select ng-model="location.selected" theme="bootstrap">
+              <ui-select-match placeholder="Select a location...">{{$select.selected.location}}</ui-select-match>
+              <ui-select-choices repeat="location in locations">
+                <div ng-bind-html="location.location"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-sm-3">
+            <ui-select ng-model="tag.selected" theme="bootstrap">
+              <ui-select-match placeholder="Select a tag...">{{$select.selected.tagName}}</ui-select-match>
+              <ui-select-choices repeat="tag in tags">
+                <div ng-bind-html="tag.tagName"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-3">
+            <input class="form-control" type="date" name="date" ng-model="newDate" placeholder="yyyy-MM-dd" min="1949-01-01" required />
+          </div>
+          <div class="col-sm-9">
+            <div class="input-group">
+              <input type="text" class="form-control"  placeholder="Enter the description..." ng-model="newItem"/>
+              <span class="input-group-btn">
+                <button class="btn btn-success" type="submit" title="Add" ng-disabled="!newItem">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="input-group content-list" ng-repeat="item in items">
+          
+          <span ng-if="!item.editting">{{item.date | date:'yyyy-MM-dd'}} </span>
+          <span ng-if="!item.editting">{{item.categoryName}} </span>
+          <span ng-if="!item.editting">{{item.projectName}} </span>
+          <span ng-if="!item.editting">{{item.locationName}} </span>
+          <span ng-if="!item.editting">{{item.item}}</span>
+          <input type="text" class="form-control" ng-model="item.item" ng-if="item.editting">
+          <div class="input-group-btn">
+            <button class="btn btn-default btn-danger" type="button" title="Delete" ng-if="!item.editting" ng-click="deleteItem(item)">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            <button class="btn btn-default btn-primary" type="button" title="Edit" ng-if="!item.editting" ng-click="changeButtonFlag(item);">
+              <span class="glyphicon glyphicon-edit"></span>
+            </button>
+            <button class="btn btn-default btn-success" type="button" title="Update" ng-if="item.editting" ng-click="changeButtonFlag(item);updateItem(item)">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+          </div>
+        </div>
+        <a class="pull-left" href="">往后</a><span class="center-block">page {{page}}</span><a class="pull-right" ng-click="listNext()" href="javascript:void(0);">往前</a>
+      </form>
+    </div>
+    <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script> 
+      $(function(){
+        $("#header").load("./view/header.html"); 
+        // $("#footer").load("footer.html"); 
+      });
+    </script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-ui-select/dist/select.min.js"></script>
+    <script type="text/javascript" src="./lib/angular/input-date/angular-input-date.js"></script>
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/controllers.js"></script>
+    <script type="text/javascript" src="./app/services.js"></script>
+  </body>
+</html>
