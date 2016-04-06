@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>com.iyihua.commerce</groupId>
-		<artifactId>module_common</artifactId>
+		<artifactId>base_soa</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 

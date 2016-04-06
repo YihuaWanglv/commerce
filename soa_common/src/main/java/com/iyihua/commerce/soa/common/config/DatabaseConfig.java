@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages="com.iyihua.itimes.services.item.mapper")
+//@MapperScan(basePackages = "${database.config.mybatis.mapper}")
+@MapperScan(basePackages = "com.iyihua.commerce.soa.common.mapper")
 public class DatabaseConfig {
 
-
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        return sessionFactory.getObject();
-    }
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		sessionFactory.setDataSource(dataSource);
+		return sessionFactory.getObject();
+	}
 
 }
