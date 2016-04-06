@@ -1,4 +1,4 @@
-package com.iyihua.commerce;
+package com.iyihua.commerce.soa.search;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

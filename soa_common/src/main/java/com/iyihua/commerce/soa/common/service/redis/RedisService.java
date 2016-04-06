@@ -13,10 +13,10 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
-//@Component
+@Component
 public class RedisService implements RedisRemote {
 
-//	@Autowired
+	@Autowired
 	private JedisCluster jedisCluster;
 
 	private int expire = 0;
@@ -74,14 +74,15 @@ public class RedisService implements RedisRemote {
 	/**
 	 * flush
 	 */
+	@SuppressWarnings("deprecation")
 	public void flushDB() {
 		jedisCluster.flushDB();
-		// jedisCluster.flushAll();
 	}
 
 	/**
 	 * size
 	 */
+	@SuppressWarnings("deprecation")
 	public Long dbSize() {
 		return jedisCluster.dbSize();
 	}

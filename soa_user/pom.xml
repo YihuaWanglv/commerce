@@ -4,13 +4,13 @@
 
 	<parent>
 		<groupId>com.iyihua.commerce</groupId>
-		<artifactId>module_common</artifactId>
+		<artifactId>base_soa</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>service_user</artifactId>
+	<artifactId>soa_user</artifactId>
 	<packaging>jar</packaging>
-	<name>commerce_service_user</name>
+	<name>commerce_soa_user</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

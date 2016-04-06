@@ -4,9 +4,6 @@ import java.util.Set;
 
 public interface RedisRemote {
 	
-	public int expire = 0;
-	public int timeout = 0;
-
 	public byte[] get(byte[] key);
 
 	/**

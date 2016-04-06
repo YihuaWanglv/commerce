@@ -8,9 +8,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>service_data</artifactId>
+	<artifactId>soa_data</artifactId>
 	<packaging>jar</packaging>
-	<name>commerce_service_data</name>
+	<name>commerce_soa_data</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

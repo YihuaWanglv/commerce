@@ -24,6 +24,10 @@
     </dependencyManagement>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.iyihua.commerce</groupId>
+			<artifactId>module_soa</artifactId>
+		</dependency>
 		<!-- lib -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
