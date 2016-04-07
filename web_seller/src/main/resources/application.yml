@@ -1,6 +1,6 @@
 shiro:
-  realm: com.iyihua.itimes.config.security.MyRealm
-  loginUrl: /view/sign-in.html
+  realm: com.iyihua.commerce.web.seller.config.security.MyRealm
+  loginUrl: http://login.commerce.com:8081/view/sign-in.html
   successUrl: /item.html
   unauthorizedUrl: /forbidden.html
   filterChainDefinitions:
@@ -19,8 +19,8 @@ shiro:
     "/index.html": anon
     "/about.html": anon
     "/logout": anon
-    "/**": authc
+    "/**": super
   enableShareJsession: true
   shareJsessionKey: SHAREJSESSIONID
-  domain: .timeitem.com
+  domain: .commerce.com
   path: /

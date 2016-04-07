@@ -1,38 +1,43 @@
 package com.iyihua.bootdemo;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.List;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import com.iyihua.commerce.model.user.User;
+import com.iyihua.commerce.soa.user.SoaUserBoot;
+import com.iyihua.commerce.soa.user.mapper.UserMapper;
+import com.iyihua.commerce.soa.user.mapper.UserRoleMapper;
+import com.iyihua.commerce.soa.user.repository.UserRepository;
+//import com.iyihua.commerce.soa.user.service.UserService;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SoaUserBoot.class)
+public class AppTest {
+	
+//	@Autowired UserService userService;
+//	@Autowired UserMapper userMapper;
+//	@Autowired UserRoleMapper userRoleMapper;
+	@Autowired UserRepository userRepository;
+	
+	@Test
+	public void DemoDbTest() {
+//		User u = userMapper.findById(1L);
+//		System.err.println("-----------------" + u.getName());
+		
+//		List<String> roles = userRoleMapper.findByUserId(1L);
+//		for (String name : roles) {
+//			System.err.println("-----------------" + name); 			
+//		}
+		
+		User u = userRepository.findOne(1L);
+		System.err.println("-----------------" + u.getName());
+	}
 }

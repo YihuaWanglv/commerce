@@ -15,9 +15,9 @@
 
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="${dubbo.port}" />
-
-	<bean id="userService" class="com.iyihua.itimes.services.item.service.UserService"></bean>
-	<dubbo:service ref="userService" protocol="dubbo"
-		interface="com.iyihua.remote.base.UserRemote" timeout="${zookeeper.timeout}"></dubbo:service>
+	
+	<bean id="redisService" class="com.iyihua.commerce.soa.common.service.redis.RedisService"></bean>
+	<dubbo:service ref="redisService" protocol="dubbo"
+		interface="com.iyihua.commerce.remote.common.redis.RedisRemote" timeout="${zookeeper.timeout}"></dubbo:service>
 </beans>
 

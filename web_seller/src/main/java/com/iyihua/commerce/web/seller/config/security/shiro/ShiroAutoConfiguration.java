@@ -16,6 +16,10 @@
 
 package com.iyihua.commerce.web.seller.config.security.shiro;
 
+import java.util.Map;
+
+import javax.servlet.Filter;
+
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -30,6 +34,7 @@ import org.springframework.context.annotation.Import;
 
 import com.iyihua.commerce.web.seller.config.security.CustomCredentialsMatcher;
 import com.iyihua.commerce.web.seller.config.security.MyRealm;
+import com.iyihua.commerce.web.seller.web.filter.MyFormAuthenticationFilter;
 
 
 @Configuration
@@ -87,11 +92,14 @@ public class ShiroAutoConfiguration {
 //		}
 		
 		ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+		Map<String, Filter> filters = shiroFilter.getFilters();
+		filters.put("super", new MyFormAuthenticationFilter());
 		shiroFilter.setSecurityManager(securityManager);
 		shiroFilter.setLoginUrl(properties.getLoginUrl());
 		shiroFilter.setSuccessUrl(properties.getSuccessUrl());
 		shiroFilter.setUnauthorizedUrl(properties.getUnauthorizedUrl());
 		shiroFilter.setFilterChainDefinitionMap(properties.getFilterChainDefinitions());
+		
 		return shiroFilter;
 	}
 }

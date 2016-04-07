@@ -13,16 +13,23 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
+	
+	@RequestMapping("/sign-in")
+	public void logon(HttpServletRequest req, HttpServletResponse resp, String redirectUrl) throws IOException {
+		
+		resp.sendRedirect("/item.html");
+	}
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password) throws ServletException, IOException {
+	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password, String redirectUrl) throws ServletException, IOException {
 		Subject subject = SecurityUtils.getSubject();
 		String error = null;
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -43,7 +50,9 @@ public class LoginController {
 			Cookie cookie = new Cookie("username", username);
 			cookie.setPath("/");
 			resp.addCookie(cookie);
-			resp.sendRedirect("/item.html");// 设置跳转的页面
+//			resp.sendRedirect("/item.html");// 设置跳转的页面
+//			String url = WebUtils.getSavedRequest(req).getRequestUrl();
+			resp.sendRedirect(redirectUrl);
 		}
 	}
 

@@ -1,27 +1,47 @@
 package com.iyihua.commerce.web.seller.web.controller.user;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.iyihua.commerce.model.component.JsonObject;
+import com.iyihua.commerce.model.component.message.EmailMessage;
+import com.iyihua.commerce.module.util.EmailUtil;
+import com.iyihua.commerce.remote.user.UserRemote;
+import com.iyihua.commerce.web.seller.component.security.LoginSessionManager;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 	
-//	@Autowired private UserRemote userService;
-//	@Autowired private LoginSessionManager loginSessionManager;
+	@Autowired private UserRemote userService;
+	@Autowired private LoginSessionManager loginSessionManager;
 //	@Autowired private RedisPublisher redisPublisher;
-//	
-//	
-//	@Value("${project.host}")
-//	private String host = "localhost";
-//
+	
+	
+	@Value("${project.host}")
+	private String host = "localhost";
+
 //	@RequestMapping(method = RequestMethod.GET)
 //	public List<UserViewDTO> listUsers() {
 //		
 ////		userService.
 //		return null;
 //	}
-//
+
 //	@RequestMapping(method = RequestMethod.POST)
 //	@ResponseBody
 //	public JsonObject createUser(UserAccountSaveDTO user) {
@@ -48,7 +68,7 @@ public class UserController {
 //		}
 //		return json;
 //	}
-//	
+	
 //	private void sendAccountValidationEmail(UserDTO saved, String code) {
 //		Map<String, Object> map = new HashMap<String, Object>();
 //		map.put("userId", saved.getId());
@@ -58,7 +78,7 @@ public class UserController {
 //		RedisMessage message = new RedisMessage(0, "", email);
 //		redisPublisher.publish(new ChannelTopic("pubsub:queue"), message);
 //	}
-//
+
 //	private String initUrl(UserDTO saved, String code) {
 //		return "http://"+host+":8080/account/active?code="+code+"&id="+saved.getId();
 //	}

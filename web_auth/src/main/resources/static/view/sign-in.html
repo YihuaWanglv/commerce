@@ -11,6 +11,7 @@
   <div class="page-container">
     <h1>Sign in</h1>
     <form action="/login" method="post">
+        <input type="hidden" name="redirectUrl" id="redirectUrl">
         <input type="text" name="username" class="username" placeholder="Username">
         <input type="password" name="password" class="password" placeholder="Password">
         <button type="submit" onclick="loginSubmit()">Sign me in</button>
@@ -30,9 +31,26 @@
   <script type="text/javascript" src="assets/js/supersized-init.js"></script>
   <script type="text/javascript" src="assets/js/scripts.js"></script>
   <script type="text/javascript">
+    function GetRequest() {
+      var url = location.search; //获取url中"?"符后的字串
+      var theRequest = new Object();
+      if (url.indexOf("?") != -1) {
+        var str = url.substr(1);
+        strs = str.split("&");
+        for(var i = 0; i < strs.length; i ++) {
+           theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+        }
+      }
+      return theRequest;
+    }
     function loginSubmit() {
       $("form").submit();
     }
+    $(function(){
+      var Request = GetRequest();
+      var redirectUrl = Request['redirectUrl'];
+      $('#redirectUrl').val(redirectUrl);
+    });
     </script>
 </body>
 </html>
