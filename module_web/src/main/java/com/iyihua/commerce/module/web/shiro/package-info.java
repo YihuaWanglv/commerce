@@ -15,6 +15,6 @@
  */
 
 /**
- * @author Boya
+ * @author iyihua
  */
-package com.iyihua.commerce.web.seller.config.security.shiro;
+package com.iyihua.commerce.module.web.shiro;

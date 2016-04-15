@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.config.redis;
+package com.iyihua.commerce.module.web.shiro.redis;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

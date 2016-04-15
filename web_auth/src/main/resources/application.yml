@@ -1,7 +1,7 @@
 shiro:
-  realm: com.iyihua.commerce.web.seller.config.security.MyRealm
+  realm: com.iyihua.commerce.module.web.shiro.MyRealm
   loginUrl: /view/sign-in.html
-  successUrl: http://localhost:8080/item.html
+  successUrl: /index.html
   unauthorizedUrl: /forbidden.html
   filterChainDefinitions:
     "/login": anon

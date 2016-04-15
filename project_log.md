@@ -1,6 +1,7 @@
 # itimes 开发计划与进度记录
 
 ## [todo]
+先用@Component的方式做到父模块，再去除@Component，使用springboot @bean的方式
 把shiro做成公共模块，让所有web项目能简单接入
 
 

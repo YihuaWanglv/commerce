@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.config.security;
+package com.iyihua.commerce.module.web.shiro;
 
 import java.util.List;
 
@@ -35,14 +35,11 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
 		String username = usernamePasswordToken.getUsername();
-
 		User user = userService.findUserByName(username);
-
 		if (null != user) {
 			CredentialsInfoHolder cih = new CredentialsInfoHolder(user.getPassword(), user.getSalt());
 			return new SimpleAuthenticationInfo(user, cih, getName());
 		}
-
 		return null;
 	}
 

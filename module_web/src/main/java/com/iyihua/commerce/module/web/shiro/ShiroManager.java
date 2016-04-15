@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.iyihua.commerce.web.seller.config.security.shiro;
+package com.iyihua.commerce.module.web.shiro;
 
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.mgt.DefaultSecurityManager;
@@ -54,36 +54,12 @@ public class ShiroManager {
 		return defaultAdvisorAutoProxyCreator;
 
 	}
-
-	/**
-	 * 用户授权信息Cache
-	 */
-//	@Bean(name = "cacheManager")
-//	@ConditionalOnMissingBean
-//	public CacheManager cacheManager() {
-//		RedisCacheManager rcm = new RedisCacheManager();
-//		return rcm;
-////		return new MemoryConstrainedCacheManager();
-//	}
-	
-//	@Bean(name = "sessionDAO")
-//	@ConditionalOnMissingBean
-//	public SessionDAO sessionDAO(SessionDAO sessionDAO) {
-//		RedisSessionDAO rsd = new RedisSessionDAO();
-//		return rsd;
-//	}
 	
 	@Bean(name = "sessionManager")
 	@ConditionalOnMissingBean
 	public SessionManager sessionManager(SessionDAO sessionDAO) {
 		DefaultWebSessionManager sm = new DefaultWebSessionManager();
 		sm.setSessionDAO(sessionDAO);
-//		Cookie c = new SimpleCookie();
-//		c.setDomain(".timeitem.com");
-//		c.setPath("/");
-//		c.setName("SHAREJSESSIONID");
-//		c.setHttpOnly(true);
-//		sm.setSessionIdCookie(c);
 		return sm;
 	}
 
@@ -93,8 +69,6 @@ public class ShiroManager {
 		DefaultSecurityManager sm = new DefaultWebSecurityManager();
 		sm.setCacheManager(cacheManager);
 		sm.setSessionManager(sessionManager);
-		
-		
 		return sm;
 	}
 

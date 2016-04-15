@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.iyihua.commerce.web.seller.config.security.shiro;
+package com.iyihua.commerce.module.web.shiro;
 
 import java.util.Map;
 

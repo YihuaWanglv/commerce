@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.iyihua.commerce.web.seller.config.security.shiro;
+package com.iyihua.commerce.module.web.shiro;
 
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.Realm;
@@ -31,8 +31,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Import;
 
-import com.iyihua.commerce.web.seller.config.security.CustomCredentialsMatcher;
-import com.iyihua.commerce.web.seller.config.security.MyRealm;
 
 
 @Configuration
@@ -42,12 +40,6 @@ public class ShiroAutoConfiguration {
 	@Autowired
 	private ShiroProperties properties;
 
-	// @Bean(name = "credentialsMatcher")
-	// public CustomCredentialsMatcher credentialsMatcher() {
-	// final CustomCredentialsMatcher credentialsMatcher = new
-	// CustomCredentialsMatcher();
-	// return credentialsMatcher;
-	// }
 
 	@Bean(name = "realm")
 	@DependsOn("lifecycleBeanPostProcessor")
@@ -55,12 +47,6 @@ public class ShiroAutoConfiguration {
 	public MyRealm realm() {
 		Class<?> relmClass = properties.getRealm();
 		MyRealm r = (MyRealm) BeanUtils.instantiate(relmClass);
-		/**
-		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-		// credentialsMatcher.setHashAlgorithmName(Sha256Hash.ALGORITHM_NAME);
-		credentialsMatcher.setHashAlgorithmName(Md5Hash.ALGORITHM_NAME);
-		r.setCredentialsMatcher(credentialsMatcher);
-		*/
 		CustomCredentialsMatcher credentialsMatcher = new CustomCredentialsMatcher();
 		r.setCredentialsMatcher(credentialsMatcher);
 		return r;
@@ -71,10 +57,6 @@ public class ShiroAutoConfiguration {
 	@ConditionalOnMissingBean
 	public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultSecurityManager securityManager, Realm realm) {
 		MyRealm myRealm = (MyRealm) realm;
-//		HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
-//		credentialsMatcher.setHashAlgorithmName(Md5Hash.ALGORITHM_NAME);
-//		myRealm.setCredentialsMatcher(credentialsMatcher);
-
 		securityManager.setRealm(myRealm);
 
 //		 设置跨域session共享,目前支持父域以及其子域下的session共享
