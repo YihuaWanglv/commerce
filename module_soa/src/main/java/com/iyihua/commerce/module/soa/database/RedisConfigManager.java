@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.iyihua.commerce.module.soa.model.component.ClusterInfo;
@@ -13,10 +12,10 @@ import com.iyihua.commerce.module.soa.model.component.ClusterInfo;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
-@Component
+//@Component
 public class RedisConfigManager {
 
-	public JedisCluster initJedisCluster(String redisClusterList) {
+	public static JedisCluster initJedisCluster(String redisClusterList) {
 		Assert.notNull(redisClusterList, "redisClusterList must not be null!");
 		List<ClusterInfo> list = new ArrayList<ClusterInfo>();
 		String[] nodes =  redisClusterList.split(",");
