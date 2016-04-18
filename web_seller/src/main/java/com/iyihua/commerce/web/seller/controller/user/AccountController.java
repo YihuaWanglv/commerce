@@ -1,17 +1,23 @@
-package com.iyihua.commerce.web.seller.web.controller.user;
+package com.iyihua.commerce.web.seller.controller.user;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//@Controller
-//@RequestMapping("/account")
+import com.iyihua.commerce.web.seller.component.security.SecurityMatchManager;
+
+@Controller
+@RequestMapping("/account")
 public class AccountController {
 
-//	@Autowired private SecurityMatchManager securityMatchManager;
-//	
-//	@Value("${project.host}")
-//	private String host = "localhost";
-//	
+	@Autowired private SecurityMatchManager securityMatchManager;
+	
+	@Value("${project.host}")
+	private String host = "localhost";
+	
 //	@RequestMapping(value = "/active")
 //	public String active(Map<String, Object> model, String code, Integer id) {
 //		

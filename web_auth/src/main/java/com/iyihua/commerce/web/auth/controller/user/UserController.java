@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.web.controller.user;
+package com.iyihua.commerce.web.auth.controller.user;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

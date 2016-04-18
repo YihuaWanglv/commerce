@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.web.controller;
+package com.iyihua.commerce.web.auth.controller;
 
 import java.io.IOException;
 
@@ -13,23 +13,23 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
-	
+
 	@RequestMapping("/sign-in")
 	public void logon(HttpServletRequest req, HttpServletResponse resp, String redirectUrl) throws IOException {
-		
+
 		resp.sendRedirect("/item.html");
 	}
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password, String redirectUrl) throws ServletException, IOException {
+	public void login(HttpServletRequest req, HttpServletResponse resp, String username, String password,
+			String redirectUrl) throws ServletException, IOException {
 		Subject subject = SecurityUtils.getSubject();
 		String error = null;
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -50,9 +50,13 @@ public class LoginController {
 			Cookie cookie = new Cookie("username", username);
 			cookie.setPath("/");
 			resp.addCookie(cookie);
-//			resp.sendRedirect("/item.html");// 设置跳转的页面
-//			String url = WebUtils.getSavedRequest(req).getRequestUrl();
-			resp.sendRedirect(redirectUrl);
+			if (redirectUrl != null && !redirectUrl.equals("")) {
+				resp.sendRedirect(redirectUrl);
+			} else {
+				resp.sendRedirect("/index.html");// 设置跳转的页面
+			}
+			// String url = WebUtils.getSavedRequest(req).getRequestUrl();
+			// resp.sendRedirect(redirectUrl);
 		}
 	}
 
@@ -62,29 +66,21 @@ public class LoginController {
 
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
-		
-//		Cookie cookie = new Cookie("username", null);
-//		cookie.setMaxAge(0);
-//		cookie.setPath("/");
-//		resp.addCookie(cookie);
-		
 		delete(req, resp, "username");
-		
 		resp.sendRedirect("/index.html");
 	}
-	
+
 	public void delete(HttpServletRequest req, HttpServletResponse resp, String key) {
-	    Cookie[] cookies = req.getCookies();
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	        	System.out.println("------" + cookie.getName().toString());
-	            if (cookie.getName().toString().equals(key)) {
-	                cookie.setValue(null);
-	                cookie.setMaxAge(0);
-	                cookie.setPath("/");
-	                resp.addCookie(cookie);
-	            }
-	        }
-	    }
+		Cookie[] cookies = req.getCookies();
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().toString().equals(key)) {
+					cookie.setValue(null);
+					cookie.setMaxAge(0);
+					cookie.setPath("/");
+					resp.addCookie(cookie);
+				}
+			}
+		}
 	}
 }

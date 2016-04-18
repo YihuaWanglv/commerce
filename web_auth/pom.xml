@@ -22,6 +22,12 @@
 	        <artifactId>h2</artifactId>
 	    </dependency>
 		 -->
+		 <!-- 
+		 <dependency>
+			<groupId>com.iyihua.commerce</groupId>
+			<artifactId>module_web</artifactId>
+		</dependency> 
+		-->
 	</dependencies>
 
 	<build>

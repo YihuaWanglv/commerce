@@ -1,5 +1,5 @@
 shiro:
-  realm: com.iyihua.commerce.web.seller.config.security.MyRealm
+  realm: com.iyihua.commerce.module.web.shiro.MyRealm
   loginUrl: http://login.commerce.com:8081/view/sign-in.html
   successUrl: /item.html
   unauthorizedUrl: /forbidden.html

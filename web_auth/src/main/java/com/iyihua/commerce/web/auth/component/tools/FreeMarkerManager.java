@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.component.tools;
+package com.iyihua.commerce.web.auth.component.tools;
 
 import java.io.IOException;
 import java.util.Map;

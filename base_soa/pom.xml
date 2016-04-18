@@ -24,6 +24,8 @@
     </dependencyManagement>
 
 	<dependencies>
+		<!-- 
+		 -->
 		<dependency>
 			<groupId>com.iyihua.commerce</groupId>
 			<artifactId>module_soa</artifactId>
@@ -47,4 +49,71 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<mainClass>com.iyihua.itimes.App</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy-prod-resources</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<!-- this is important -->
+								<overwrite>true</overwrite>
+								<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+								<outputDirectory>target/classes</outputDirectory>
+								<resources>
+									<resource>
+										<directory>src/main/resources</directory>
+										<includes>
+											<include>*.properties</include>
+											<include>*.xml</include>
+										</includes>
+									</resource>
+									<resource>
+										<directory>src/main/resources/${env}</directory>
+										<targetPath></targetPath>
+									</resource>
+								</resources>
+								<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+								<testOutputDirectory>target/test-classes</testOutputDirectory>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

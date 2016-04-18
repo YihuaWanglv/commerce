@@ -24,8 +24,12 @@
     </dependencyManagement>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>com.iyihua.commerce</groupId>
+			<artifactId>module_web</artifactId>
+		</dependency> 
 		<!-- lib -->
+		<!-- 
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -55,6 +59,7 @@
 	        <groupId>org.freemarker</groupId>
 	        <artifactId>freemarker</artifactId>
 	    </dependency>
+		 -->
 	</dependencies>
 
 	<build>

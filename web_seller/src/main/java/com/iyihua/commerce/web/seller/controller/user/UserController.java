@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.web.controller.user;
+package com.iyihua.commerce.web.seller.controller.user;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;

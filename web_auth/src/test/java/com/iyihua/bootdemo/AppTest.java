@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.iyihua.commerce.web.seller.WebAuthBoot;
+import com.iyihua.commerce.web.auth.WebAuthBoot;
 
 
 /**

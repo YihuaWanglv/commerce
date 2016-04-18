@@ -10,32 +10,78 @@ import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.iyihua.commerce.module.util.SerializeUtils;
 import com.iyihua.commerce.remote.common.redis.RedisRemote;
 
-@Component
+//@Component
 public class RedisSessionDAO extends AbstractSessionDAO {
 
 	private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
 
-	public int expire = 0;
-	public int timeout = 0;
-
-	@Autowired
+	private int expire = 0;
+	private int timeout = 0;
 	private RedisRemote redisService;
-
-	public int getExpire() { return expire; }
-	public void setExpire(int expire) { this.expire = expire; }
-	public int getTimeout() { return timeout; }
-	public void setTimeout(int timeout) { this.timeout = timeout; }
-
 	/**
 	 * The Redis key prefix for the sessions
 	 */
 	private String keyPrefix = "shiro_redis_session:";
+	
+	
+
+//	private RedisSessionDAO(Builder b) {
+//		super();
+//		this.redisService = b.redisService;
+//		this.keyPrefix = b.keyPrefix;
+//	}
+//	
+//	public static class Builder {
+//		private String keyPrefix = "shiro_redis_session:";
+//		private RedisRemote redisService;
+//        public Builder(String keyPrefix) {
+//            this.keyPrefix = keyPrefix;
+//        }
+//        public Builder redisRemote(RedisRemote redisService) {
+//            this.redisService = redisService;
+//            return this;
+//        }
+//        public RedisSessionDAO build() {
+//            return new RedisSessionDAO(this);
+//        }
+//	}
+
+	public RedisSessionDAO(RedisRemote redisService) {
+		super();
+		this.redisService = redisService;
+	}
+	
+	public RedisSessionDAO() {
+		super();
+	}
+
+	public int getExpire() {
+		return expire;
+	}
+
+	public void setExpire(int expire) {
+		this.expire = expire;
+	}
+
+	public int getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+	
+	public RedisRemote getRedisService() {
+		return redisService;
+	}
+	
+	public void setRedisService(RedisRemote redisService) {
+		this.redisService = redisService;
+	}
 
 	@Override
 	public void update(Session session) throws UnknownSessionException {

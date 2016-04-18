@@ -1,4 +1,4 @@
-package com.iyihua.commerce.web.seller.component.security;
+package com.iyihua.commerce.web.auth.component.security;
 
 import org.springframework.stereotype.Component;
 
