@@ -37,6 +37,7 @@ import org.springframework.context.annotation.Import;
 
 import com.iyihua.commerce.module.web.shiro.CustomCredentialsMatcher;
 import com.iyihua.commerce.module.web.shiro.MyRealm;
+import com.iyihua.commerce.module.web.shiro.ShiroManager;
 import com.iyihua.commerce.module.web.shiro.ShiroProperties;
 import com.iyihua.commerce.web.seller.filter.MyFormAuthenticationFilter;
 
