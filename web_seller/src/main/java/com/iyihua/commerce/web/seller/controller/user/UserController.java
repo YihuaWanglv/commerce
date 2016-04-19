@@ -1,25 +1,15 @@
 package com.iyihua.commerce.web.seller.controller.user;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import org.springframework.beans.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iyihua.commerce.model.component.JsonObject;
-import com.iyihua.commerce.model.component.message.EmailMessage;
-import com.iyihua.commerce.module.util.EmailUtil;
+import com.iyihua.commerce.model.component.message.RedisMessage;
+import com.iyihua.commerce.remote.common.message.RedisMessageRemote;
 import com.iyihua.commerce.remote.user.UserRemote;
 import com.iyihua.commerce.web.seller.component.security.LoginSessionManager;
 
@@ -27,13 +17,25 @@ import com.iyihua.commerce.web.seller.component.security.LoginSessionManager;
 @RequestMapping("/user")
 public class UserController {
 	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired private UserRemote userService;
 	@Autowired private LoginSessionManager loginSessionManager;
 //	@Autowired private RedisPublisher redisPublisher;
+	@Autowired private RedisMessageRemote redisMessageService;
 	
 	
 	@Value("${project.host}")
 	private String host = "localhost";
+	
+	@RequestMapping(value = "/message", method = RequestMethod.GET)
+	public void message() {
+		logger.info(host);
+		RedisMessage message = new RedisMessage(1, "test message", "This is a test message!");
+		redisMessageService.publish("test", message);
+		RedisMessage message2 = new RedisMessage(2, "test message", "My name is iyihua!");
+		redisMessageService.publish("iyihua", message2);
+	}
 
 //	@RequestMapping(method = RequestMethod.GET)
 //	public List<UserViewDTO> listUsers() {

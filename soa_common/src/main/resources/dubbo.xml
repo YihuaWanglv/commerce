@@ -19,5 +19,8 @@
 	<bean id="redisService" class="com.iyihua.commerce.soa.common.service.redis.RedisService"></bean>
 	<dubbo:service ref="redisService" protocol="dubbo"
 		interface="com.iyihua.commerce.remote.common.redis.RedisRemote" timeout="${zookeeper.timeout}"></dubbo:service>
+	<bean id="redisMessageService" class="com.iyihua.commerce.soa.common.service.message.RedisMessageService"></bean>
+	<dubbo:service ref="redisMessageService" protocol="dubbo"
+		interface="com.iyihua.commerce.remote.common.message.RedisMessageRemote" timeout="${zookeeper.timeout}"></dubbo:service>
 </beans>
 
