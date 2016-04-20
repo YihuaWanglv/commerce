@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.script.DigestUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.iyihua.commerce.model.user.User;
@@ -17,6 +18,7 @@ import com.iyihua.commerce.soa.user.mapper.UserRoleMapper;
 import com.iyihua.commerce.soa.user.mapper.UserXmlMapper;
 import com.iyihua.commerce.soa.user.repository.UserRepository;
 
+@Service
 public class UserService implements UserRemote {
 
 	@Autowired private UserMapper userMapper;
