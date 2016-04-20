@@ -22,12 +22,14 @@
 		<shiro.version>1.2.3</shiro.version>
 		<jedis.version>2.8.1</jedis.version>
 		<spring-data-redis.version>1.7.0.BUILD-SNAPSHOT</spring-data-redis.version>
+		<spring-boot-starter-data-elasticsearch.version>1.4.0.BUILD-SNAPSHOT</spring-boot-starter-data-elasticsearch.version>
 		<dubbo.version>2.8.4</dubbo.version>
 		<netty.version>3.2.9.Final</netty.version>
 		<mybatis.version>3.2.3</mybatis.version>
 		<mybatis-spring.version>1.2.4</mybatis-spring.version>
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<hibernate-entitymanager.version>${hibernate.version}</hibernate-entitymanager.version>
+		<elasticsearch.version>1.5.2</elasticsearch.version>
 	</properties>
 
 	<dependencyManagement>
@@ -83,13 +85,23 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.data</groupId>
-				<artifactId>spring-data-redis</artifactId>
-				<version>${spring-data-redis.version}</version>
+				<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+				<version>${spring-boot-starter-data-elasticsearch.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.elasticsearch</groupId>
+				<artifactId>elasticsearch</artifactId>
+				<version>${elasticsearch.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
 				<version>${jedis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+				<version>${spring-data-redis.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

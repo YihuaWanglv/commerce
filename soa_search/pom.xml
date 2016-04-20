@@ -8,9 +8,9 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>service_search</artifactId>
+	<artifactId>soa_search</artifactId>
 	<packaging>jar</packaging>
-	<name>commerce_service_search</name>
+	<name>commerce_soa_search</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -18,9 +18,40 @@
 	</properties>
 
 	<dependencies>
-
-
-		<!-- lib -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+			<!-- <exclusions>  
+		          <exclusion>   
+		            <groupId>org.slf4j</groupId>  
+		            <artifactId>slf4j-log4j12</artifactId>  
+		          </exclusion>  
+		          <exclusion>   
+		            <groupId>log4j</groupId>  
+		            <artifactId>log4j</artifactId>  
+		          </exclusion>  
+		    </exclusions> -->
+		</dependency>
 
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
